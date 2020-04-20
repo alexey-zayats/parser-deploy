@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+
+  claim-parser-watcher:
+    container_name: claim-parser-watcher
+    image: aazayats/claim-parser:latest
+    command: ["watch"]
+    restart: unless-stopped
+    env_file:
+      - ${ENV:-local}/pass-parser.env
+    networks:
+      - local
+    volumes:
+      - ${STORE}:/data/events
+
+  claim-parser-consumer:
+    container_name: claim-parser-consumer
+    image: aazayats/claim-parser:latest
+    command: ["consume"]
+    restart: unless-stopped
+    env_file:
+      - ${ENV:-local}/pass-parser.env
+    networks:
+      - local
+
+networks:
+  local:
