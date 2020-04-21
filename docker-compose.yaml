@@ -23,6 +23,8 @@ services:
       - ${ENV:-local}/claim-parser.env
     networks:
       - local
+    volumes:
+      - ${STORE}:/passes
 
 networks:
   local:
