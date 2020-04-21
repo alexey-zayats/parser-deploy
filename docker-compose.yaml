@@ -12,7 +12,7 @@ services:
     networks:
       - local
     volumes:
-      - ${STORE}:/data/events
+      - ${STORE}:/data
 
   claim-parser-consumer:
     container_name: claim-parser-consumer
